@@ -1,0 +1,52 @@
+<%= stylesheet_link_tag "styles" %>
+
+<%= simple_form_for(@shop) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+  <% unless @shop.user_shot.blank%>
+    <%#= image_tag (@shop.user_shot.url), id: "previewImage"%>
+  <% end %>
+
+  <output id="list"></output>
+  <br>
+
+<div class="container">
+	<div class="row">
+	  <div class="col-md-6 float-center">
+	      <form method="post" action="#" id="#">
+           
+              
+              
+              
+              <%# <div class="form-group files">
+                <h2 id="drop-zone" class="text-center">Drop Your Shot Here</h2> %>
+                <%# <input type="file" class="form-control" multiple="true"> %>
+                <%# <%= f.file_field :user_shot, multiple: true%>
+              <%# </div> %> %>
+              
+            
+          </form>
+	      
+	      
+	  </div>
+	</div>
+</div>
+
+  <%#= f.input :user_shot, label: false, input_html: { class: "file-input", type: "file" }, wrapper: false, label_html: { class: "file-label"} %>
+  <%#= f.file_field :user_shot, multiple: true%>
+
+
+  <div class="form-inputs">
+   <div class="form-group files">
+    <h2 id="drop-zone" class="text-center">Drop Your Shot Here</h2>
+    <%# <input type="file" class="form-control" multiple="true"> %>
+    <%= f.file_field :user_shot, multiple: true%>
+  </div>
+    <%= f.input :title %>
+    <%= f.input :description %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
