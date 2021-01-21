@@ -1,9 +1,12 @@
 class ShopsController < ApplicationController
   before_action :set_shop, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:edit, :update, :destroy, :like, :unlike]
+  impressionist actions: [:show], unique: [:impressionable_type, :impressionable_id, :session_hash]
 
   # GET /shops
   # GET /shops.json
   def index
+    @shops = Shop.all.order('created_at DESC')
     @shops = Shop.all
   end
 
@@ -14,7 +17,7 @@ class ShopsController < ApplicationController
 
   # GET /shops/new
   def new
-    @shop = Shop.new
+    @shop = current_user.shops.build
   end
 
   # GET /shops/1/edit
@@ -24,7 +27,7 @@ class ShopsController < ApplicationController
   # POST /shops
   # POST /shops.json
   def create
-    @shop = Shop.new(shop_params)
+    @shop = current_user.shops.build(shop_params)
 
     respond_to do |format|
       if @shop.save
@@ -61,6 +64,18 @@ class ShopsController < ApplicationController
     end
   end
 
+  def like
+    @shop = Shop.find(params[:id])
+    @shop.liked_by current_user
+    redirect_to shop_path
+  end
+
+  def unlike
+     @shop = Shop.find(params[:id])
+    @shop.unliked_by current_user
+    redirect_to shop_path
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_shop
@@ -69,6 +84,6 @@ class ShopsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def shop_params
-      params.require(:shop).permit(:title, :description, :user_id, :user_shot)
+      params.require(:shop).permit(:title, :description, :user_id, images: [] )
     end
 end

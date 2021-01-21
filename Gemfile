@@ -25,12 +25,13 @@ gem 'gravatar_image_tag'
 gem 'impressionist'
 gem 'acts_as_votable'
 gem 'jquery-rails'
+gem 'mini_magick', '~> 4.11'
 # # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use Active Storage variant
-# gem 'image_processing', '~> 1.2'
+gem 'image_processing', '~> 1.2'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false

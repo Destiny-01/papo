@@ -1,0 +1,25 @@
+<%= stylesheet_link_tag "styles" %>
+<div id="carousel" class="carousel slide " data-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active text-center" data-bs-interval="3000">
+      <%= image_tag(@shop.full(0), class: "d-block w-40 img-fluid mx-auto d-block", alt: "First Image") %>
+      <%# <img src="/assets/test" class="d-block w-100" alt="..."> %>
+    </div>
+    <div class="carousel-item text-center" data-bs-interval="3000" >
+      <%= image_tag(@shop.full(1), class: "d-block w-40 img-fluid mx-auto d-block", alt: "Second Image") %>
+      <%# <img src="/assets/tes" class="d-block w-100" alt="..."> %>
+    </div>
+    <div class="carousel-item text-center" data-bs-interval="3000" >
+      <%= image_tag(@shop.full(2), class: "d-block w-40 img-fluid mx-auto d-block", alt: "Third Image") %>
+<%# <img src="/assets/2" class="d-block w-100" alt="..."> %>
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carousel" role="button" data-bs-slide="prev">
+    <span class= "ico btn"><i class="fa fa-chevron-left"></i></span>
+    <span class="visually-hidden">Previous</span>
+  </a>
+  <a class="carousel-control-next omg" href="#carousel" role="button" data-bs-slide="next">
+    <span class= "yy btn"><i class="fa fa-chevron-right"></i></span>
+    <span class="visually-hidden">Next</span>
+  </a>
+</div>

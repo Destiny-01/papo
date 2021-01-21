@@ -1,27 +1,69 @@
-<h1>Shops</h1>
+<%= stylesheet_link_tag "shops" %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
+<section class="section">
+  <div class="shots">
     <% @shops.each do |shop| %>
-      <tr>
-        <td><%= shop.title %></td>
-        <td><%= shop.description %></td>
-        <td><%= link_to 'Show', shop %></td>
-        <td><%= link_to 'Edit', edit_shop_path(shop) %></td>
-        <td><%= link_to 'Destroy', shop, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <div class="shot-grid-item">
+        <div class="shot-wrapper float-center">
+          <%= link_to shop, class:"shot" do %>
+             <div class="img-fluid">
+           <%= image_tag(shop.thumbnail(0), class: "img-fluid") unless shop.images[0].blank?%></div>
+            <div class="shot-data">
+              <h3 class="shot-title"><%= shop.title %></h3>
+              <div class="shot-description"><%= truncate(shop.description, length: 60) %> </div>
+              <div class="shot-time">
+                <%= time_ago_in_words(shop.created_at) %>
+              </div>
+            </div>
+          <% end %><br>
+
+          <nav class="level shot-analytics">
+            <div class="level-left">
+            
+            </div>
+            <div class="level-right row ">
+              <div class="level-item views data col-md-6 float-end">
+                <%= link_to shop do%>
+                  <span class="icon"><i class="fa fa-eye"></i></span>
+                  <%= shop.impressionist_count%>
+                <% end %>
+              </div>
+              <div class="level-item comments data col-md-3">
+                <%= link_to shop do %>
+                  <span class="icon"><i class="fa fa-comment"></i></span>
+                  <%= shop.comments.count %>
+                <% end %>
+              </div>
+              <div class="level-item likes data col-md-3">
+                <% if user_signed_in? %>
+    <% if current_user.liked? shop %>
+        <%= link_to unlike_shop_path(shop), method: :put, class: "unlike_shop" do %>
+            <span class="icon"><i class="fa fa-heart vote-count "> </i></span> 
+            <span class="vote_count"><%= shop.get_likes.size %> </span>
+        <% end %>
+    <% else %>
+        <%= link_to like_shop_path(shop), method: :put, class: "like_shop" do %>
+            <span class="icon"><i class="fa fa-heart vote-count "> </i></span> 
+            <span class="vote_count"><%= shop.get_likes.size %> </span>
+        <% end %>
     <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Shop', new_shop_path %>
+<% else %>
+    <%= link_to like_shop_path(shop), method: :put, class: "like_shop" do %>
+        <span class="icon"><i class="fa fa-heart vote-count "> </i></span> 
+        <span class="vote_count"><%= shop.get_likes.size %> </span>
+    <% end %>
+<% end %>
+              </div>
+            </div>
+          </nav>
+          <div class="user-data">
+              <div class="user-thumb text-end">
+                <%= gravatar_image_tag(shop.user.email.gsub('spam', 'mdeering'), alt: shop.user.name, gravatar: { size: 20 }); %> <%= shop.user.name %> 
+              </div>
+              <div class="user-name"><%#= shop.user.name %> </div>
+            </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</section>

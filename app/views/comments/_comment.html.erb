@@ -1,0 +1,29 @@
+<%= stylesheet_link_tag "styles" %>
+<div class="box card">
+    <div class="card-body">
+        <div class="row">
+            <div class="col">
+                <article class="media">
+                    <figure class="media-left">
+                        <p class="image user-thumb">
+                            <%= gravatar_image_tag(comment.user.email.gsub('spam', 'mdeering'), alt: comment.user.name, gravatar: { size: 36 }); %>
+                        </p>
+                    </figure>
+                    <div class="media-content ms-6 ">
+                        <div class="content">
+                            <p>
+                                <strong class="pt-5"><%= comment.user.name %> </strong><br>
+                                <div class=""><%= comment.response %> </div>
+                            </p>
+                        </div>
+                    </div>
+                </article>
+            </div>
+            <div class="col">
+                <% if (user_signed_in? && (current_user.id == comment.user_id)) %>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end"> <%= link_to 'Delete', [comment.shop, comment], method: :delete, class: "btn btn-danger me-md-2", data: {confirm: "Are You Sure"} %></div>            <% end %>
+            </div>
+        </div>
+        
+    </div>
+</div>

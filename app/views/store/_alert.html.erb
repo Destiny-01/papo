@@ -1,10 +1,6 @@
-    <% if flash[:notice] %>
-        <div class="notification primary global-notification">
-            <p class="notice"><%= notice%></p> 
-        </div>
-    <% end %>
-    <% if flash[:alert] %>
-        <div class="notification danger global-notification">
-            <p class="alert"><%= alert %></p>
-        </div>
-    <% end %>
+<div class="notification alert alert-warning alert-dismissible fade show" role="alert">
+    <p class="notice"><%= notice%></p> 
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+

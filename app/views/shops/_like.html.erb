@@ -1,0 +1,18 @@
+<% if user_signed_in? %>
+    <% if current_user.liked? @shop %>
+        <%= link_to unlike_shop_path(@shop), method: :put, class: "unlike_shop" do %>
+            <span class="icon"><i class="fa fa-heart vote-count "> </i></span> 
+            <span class="vote_count"><%= @shop.get_likes.size %> </span>
+        <% end %>
+    <% else %>
+        <%= link_to like_shop_path(@shop), method: :put, class: "like_shop" do %>
+            <span class="icon"><i class="fa fa-heart vote-count "> </i></span> 
+            <span class="vote_count"><%= @shop.get_likes.size %> </span>
+        <% end %>
+    <% end %>
+<% else %>
+    <%= link_to like_shop_path(@shop), method: :put, class: "like_shop" do %>
+        <span class="icon"><i class="fa fa-heart vote-count "> </i></span> 
+        <span class="vote_count"><%= @shop.get_likes.size %> </span>
+    <% end %>
+<% end %>
