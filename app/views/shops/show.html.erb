@@ -30,20 +30,6 @@
                   <i class="fa fa-trash">  Delete</i><p></p>
                 <% end %>
               <% end %>
-           <section class="container comments mb-3"><br>
-            <h2><%= pluralize(@shop.comments.count, 'Comment') %> </h2><hr/>
-            <%= render @shop.comments %>
-            <br>
-            <% if user_signed_in? %>
-              <div class="comment-form">
-              <div class=""></div>
-                <h2 class="text-center ">Leave a reply</h2>
-                <div class=""><div class=""><%= render 'comments/form' %></div></div> 
-              </div>
-            <% else %>
-              <div class="content"><%= link_to 'Sign In', new_user_session_path, class: "btn btn-primary" %>  to leave a comment</div>
-            <% end %>
-          </section><br>
         </div>
         </div>
           <%# <%= image_tag(@shop.images[2], style: 'width:100%; height:auto;') %>
@@ -58,18 +44,18 @@
                 <div class="ico me-5"> <% if user_signed_in? %>
                   <% if current_user.liked? @shop %>
                       <%= link_to unlike_shop_path(@shop), method: :put, class: "unlike_shop" do %>
-                          <span class="icon"><i class="fas fa-heart vote-count "> </i></span> 
+                          <span class="icon"><i class="fa fa-heart vote-count "> </i></span> 
                           <span class="vote_count"><%= pluralize(@shop.get_likes.size, 'Like') %> </span>
                       <% end %>
                   <% else %>
                       <%= link_to like_shop_path(@shop), method: :put, class: "like_shop" do %>
-                          <span class="icon"><i class="far fa-heart vote-count "> </i></span> 
+                          <span class="icon"><i class="fa fa-heart vote-count "> </i></span> 
                           <span class="vote_count"><%= pluralize(@shop.get_likes.size, 'Like') %> </span>
                       <% end %>
                   <% end %>
               <% else %>
                   <%= link_to like_shop_path(@shop), method: :put, class: "like_shop ms-5 btn ico" do %>
-                      <span class="icon"><i class="far fa-heart vote-count "> </i></span> 
+                      <span class="icon"><i class="fa fa-heart vote-count "> </i></span> 
                       <span class="vote_count"><%= pluralize(@shop.get_likes.size, 'Like') %> </span>
                   <% end %>
               <% end %>
@@ -89,6 +75,20 @@
         </div>
         
       </div>
+           <section class="container comments mb-3"><br>
+            <h2><%= pluralize(@shop.comments.count, 'Comment') %> </h2><hr/>
+            <%= render @shop.comments %>
+            <br>
+            <% if user_signed_in? %>
+              <div class="comment-form">
+              <div class=""></div>
+                <h2 class="text-center ">Leave a reply</h2>
+                <div class=""><div class=""><%= render 'comments/form' %></div></div> 
+              </div>
+            <% else %>
+              <div class="content"><%= link_to 'Sign In', new_user_session_path, class: "btn btn-primary" %>  to leave a comment</div>
+            <% end %>
+          </section><br>
 
     </div><br>
   </div>
