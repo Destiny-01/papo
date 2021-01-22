@@ -6,12 +6,11 @@
           <h1 class="title"><%= @shop.title %> </h1>
           <div class=" ">
             <span class="text-grey"></span>
-            <div class="user-thumb ">
-              by <%= gravatar_image_tag( @shop.user.email.gsub('spam', 'mdeering'), alt: @shop.user.name, class: "ms-3 totm", gravatar: { size: 20 }); %>  <%#= @shop.user.name %> <span class="text-grey ms-3">  posted</span><span class="bt">
-              <%= verbose_date(@shop.created_at)  %>
-              <div class="user-name text-bold"><%=@shop.user.name%>  </div>
+            <h6 class="user-thumb ">
+              by <%= gravatar_image_tag( @shop.user.email.gsub('spam', 'mdeering'), alt: @shop.user.name, class: "ms-3 totm", gravatar: { size: 20 }); %>  <%= @shop.user.name %> <span class="text-grey ms-3">  posted</span><span class="bt">
+                <%= verbose_date(@shop.created_at)  %>
               </span>
-            </div>
+            </h6>
           <br>
         <div class="grid">
           <div class="shot-container  pt-5">
