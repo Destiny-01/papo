@@ -9,7 +9,7 @@
             <div class="user-thumb ">
               by <%= gravatar_image_tag( @shop.user.email.gsub('spam', 'mdeering'), alt: @shop.user.name, class: "ms-3 totm", gravatar: { size: 20 }); %>  <%#= @shop.user.name %> <span class="text-grey ms-3">  posted</span><span class="bt">
               <%= verbose_date(@shop.created_at)  %>
-              <%# <div class="user-name text-bold">= @shop.user.name </div> %>
+              <div class="user-name text-bold"><%=@shop.user.name%>  </div>
               </span>
             </div>
           <br>
@@ -18,7 +18,7 @@
             <div class="">
               <div class="shot-full float-center"><%= render 'shops/carousel' %></div>
               <br>
-              <h5 class="content ms-5"><%= @shop.description %></h5>
+              <h5 class="content container"><%= @shop.description %></h5>
               <br>
             </div>
           </div>
@@ -55,7 +55,7 @@
               <div class="list-group" id="list-tab" role="tablist">
                 <a class="list-group-item list-group-item-action active" id="list-home-list" data-bs-toggle="list" href="#" role="tab" aria-controls="home"><span class="icon"><i class="fa fa-eye"></i></span> <%= pluralize(@shop.impressionist_count, 'View') %></a><hr>
                 <a class="list-group-item list-group-item-action" id="list-profile-list" data-bs-toggle="list" href="#" role="tab" aria-controls="profile"><span class="icon"><i class="fa fa-comment"></i></span>  <%= pluralize(@shop.comments.count, 'Comment') %> </a><hr>
-                <div class="ico"> <% if user_signed_in? %>
+                <div class="ico me-5"> <% if user_signed_in? %>
                   <% if current_user.liked? @shop %>
                       <%= link_to unlike_shop_path(@shop), method: :put, class: "unlike_shop" do %>
                           <span class="icon"><i class="fas fa-heart vote-count "> </i></span> 
