@@ -15,9 +15,13 @@
         <div class="grid">
           <div class="shot-container  pt-5">
             <div class="">
-              <div class="shot-full float-center"><%= render 'shops/carousel' %></div>
+              <div class="shot-full "><%= render 'carousel' %></div>
               <br>
-              <h5 class="content container"><%= @shop.description %></h5>
+              <%#= cl_image_tag(@shop.shots[0], alt: "Image") %>
+              <%#= image_tag(@shop.user_shots_urls, alt: "Image") %>
+              <%#= image_tag(@shop.shots[0], alt: "Image") %>
+              <%#= image_tag @shop.image[1] %>
+              <h4 class="content container"><%= @shop.description %></h4>
               <br>
             </div>
           </div>
@@ -25,7 +29,7 @@
 
               <% if user_signed_in? && (current_user.id == @shop.user_id) %>
                 <%= link_to 'Edit', edit_shop_path(@shop), class: "btn btn-secondary" %>
-                <%= link_to shop_path, method: :delete, data: {confirm: "Are You Sure?"}, class: "btn btn-outline-danger ay btn-sm" do %>
+                <%= link_to shop_path, method: :delete, data: {confirm: "Are You Sure?"}, class: "btn btn-outline-danger  ms-3" do %>
                   <i class="fa fa-trash">  Delete</i><p></p>
                 <% end %>
               <% end %>
@@ -40,23 +44,24 @@
               <div class="list-group" id="list-tab" role="tablist">
                 <a class="list-group-item list-group-item-action active" id="list-home-list" data-bs-toggle="list" href="#" role="tab" aria-controls="home"><span class="icon"><i class="fa fa-eye"></i></span> <%= pluralize(@shop.impressionist_count, 'View') %></a><hr>
                 <a class="list-group-item list-group-item-action" id="list-profile-list" data-bs-toggle="list" href="#" role="tab" aria-controls="profile"><span class="icon"><i class="fa fa-comment"></i></span>  <%= pluralize(@shop.comments.count, 'Comment') %> </a><hr>
-                <div class="ico me-5"> <% if user_signed_in? %>
+                <div class="ico me-5"> 
+                <% if user_signed_in? %>
                   <% if current_user.liked? @shop %>
                       <%= link_to unlike_shop_path(@shop), method: :put, class: "unlike_shop" do %>
                           <span class="icon"><i class="fa fa-heart vote-count "> </i></span> 
-                          <span class="vote_count"><%= pluralize(@shop.get_likes.size, 'Like') %> </span>
                       <% end %>
+                          <span class="vote_count"><%= pluralize(@shop.get_likes.size, 'Like') %> </span>
                   <% else %>
                       <%= link_to like_shop_path(@shop), method: :put, class: "like_shop" do %>
                           <span class="icon"><i class="fa fa-heart vote-count "> </i></span> 
-                          <span class="vote_count"><%= pluralize(@shop.get_likes.size, 'Like') %> </span>
                       <% end %>
+                          <span class="vote_count"><%= pluralize(@shop.get_likes.size, 'Like') %> </span>
                   <% end %>
               <% else %>
                   <%= link_to like_shop_path(@shop), method: :put, class: "like_shop ms-5 btn ico" do %>
                       <span class="icon"><i class="fa fa-heart vote-count "> </i></span> 
-                      <span class="vote_count"><%= pluralize(@shop.get_likes.size, 'Like') %> </span>
                   <% end %>
+                      <span class="vote_count"><%= pluralize(@shop.get_likes.size, 'Like') %> </span>
               <% end %>
               </div><hr>
                 <%# <a class="list-group-item list-group-item-action" id="list-messages-list" data-bs-toggle="list" href="#" role="tab" aria-controls="messages"><span class="icon"><i class="fa fa-heart "></i></span> </a><hr> %>

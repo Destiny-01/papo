@@ -7,7 +7,7 @@ class ShopsController < ApplicationController
   # GET /shops.json
   def index
     @shops = Shop.all.order('created_at DESC')
-    @shops = Shop.all
+    # @shops = Shop.all
   end
 
   # GET /shops/1
@@ -84,6 +84,6 @@ class ShopsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def shop_params
-      params.require(:shop).permit(:title, :description, :user_id, images: [] )
+      params.require(:shop).permit(:title, :description, :user_id, { shots: [] }, :user_shots, image: [])
     end
 end

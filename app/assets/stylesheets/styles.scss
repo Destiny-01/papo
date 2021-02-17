@@ -93,6 +93,14 @@
     font-size: 14px;
 }
 
+.not {
+    background-color: gray;
+    height: 480px;
+}
+.title {
+    font-family: monospace;
+}
+
 .nn { 
     min-width: 240px;
 }
@@ -108,4 +116,21 @@
 
 .grid {
     background-color: #fff;
+}
+
+.views {
+    margin-right: 24px;
+}
+
+.hero {
+    background-color: rgb(252, 84, 150);
+    font-style: bold;
+    color: white;
+    height: 24em;
+    margin-bottom: 24px;
+}
+
+.lol {
+    padding-top: 75px;
+    padding-right: auto;
 }

@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: destiny01
+  api_key: '741452971863316'
+  api_secret: pnTtTKaYFPY6IW1svqAky-4gsbE
+  enhance_image_tag: true
+  static_file_support: false
+production:
+  cloud_name: destiny01
+  api_key: '741452971863316'
+  api_secret: pnTtTKaYFPY6IW1svqAky-4gsbE
+  enhance_image_tag: true
+  static_file_support: true
+test:
+  cloud_name: destiny01
+  api_key: '741452971863316'
+  api_secret: pnTtTKaYFPY6IW1svqAky-4gsbE
+  enhance_image_tag: true
+  static_file_support: false

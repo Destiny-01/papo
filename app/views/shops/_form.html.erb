@@ -5,25 +5,28 @@
     <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
     <output id="list"></output>
-  <%# <div id="drop-zone" class="files form-inputs text-center"> %>
+  <% # <div id="drop-zone" class="files form-inputs text-center"> %>
     <div class="form-group files">
-      <h5 class="text-center">Only jpeg, png, svg and jpg are allowed. Maximum of 3 images</h5> 
+      <h5 class="text-center">Only jpeg, png, svg and jpg are allowed. Maximum file size is 5mb. Maximum of 3 images</h5> 
         <div id="drop-zone" class="text-center">
-          <%= f.file_field :images, multiple: true%>
+          <% #= f.file_field :images, multiple: true, direct_upload: true %>
+          <% #= f.cl_image_upload(:images, :html => { :multiple => true }) %>
+          <%#= f.file_field :attribute(:user_shots, direct_upload: true, :folder => "folder") %>
+          <%= f.file_field :image, multiple: true %>
         </div>
     </div> 
   </div>
 
-      <%#= f.file_field :user_shots, label: false, input_html: { class: "file-input", type: "file" }, wrapper: false, label_html: { class: "file-label" }, multiple: true %>
+      <% #= f.file_field :shots, label: false, input_html: { class: "file-input", type: "file" }, wrapper: false, label_html: { class: "file-label" }, multiple: true %>
       
-      <%# <%= f.input :title, label: "Title", input_html: { class: "input"}, wrapper: false, label_html: { class: "label" } %>
+      <% # <%= f.input :title, label: "Title", input_html: { class: "input"}, wrapper: false, label_html: { class: "label" } %>
 
       
     <%= f.input :title %>
     <%= f.input :description %>
 
-      <%# <%= f.input :description, input_html: { class: "textarea"}, wrapper: false, label_html: { class: "label" } %>
+      <% # <%= f.input :description, input_html: { class: "textarea"}, wrapper: false, label_html: { class: "label" } %>
 
-      <%= f.submit"Create Shot", class:"btn btn-primary" %>
+      <%= f.submit class: "btn btn-primary" %>
   <% end %>
 </div>
