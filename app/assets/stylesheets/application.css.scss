@@ -9,13 +9,9 @@ $primary-invert: $pink-invert;
 $link: $primary;
 $link-hover: darken($primary, 20%);
 
-// html, body {
-// 	min-height: 100vh;
-// 	background-color: #f4f4f4;
-// }
-
-body {
-	// background-color: ;
+.body {
+	background-color: #fffafa; 
+	font-family: "bello-pro-1", "bello-pro-2", sans-serif;
 }
 
 #drop_zone {
@@ -63,3 +59,60 @@ body {
 .visible {
 	display: block !important;
 }
+
+
+@media screen and (max-width: 1060px) {
+	#main {
+		width: 67%;
+	}
+	#other {
+		width: 30%;
+		margin-left: 3%;
+	}
+	.list-group {
+		display: none;
+	}
+	// #carousel {
+	// 	position: absolute;
+	// 	width: 100%;
+	// 	height: 100%;
+	// 	top: 0;
+	// 	left: 0;
+	// 	padding: 0%;
+	// }
+}
+
+@media screen and (max-width: 480px)  {
+	#main {
+		width: 100%;
+		height: 100%;
+		padding-bottom: 20px;
+	}
+	#other {
+		width: 100%;
+		height: 50%;
+		// background-color: #fff;
+		// color: white;
+		// margin: 0, 0, 10, 0;
+		border: none;
+		display: none;
+	}
+	// #carousel {
+	// 	position: absolute;
+	// 	width: 100%;
+	// 	height: 100%;
+	// 	top: 0;
+	// 	left: 0;
+	// 	padding: 0%;
+	// }
+	.list-group {
+		display: none;
+	}
+	.omg {
+		padding-right: -45px;
+	}
+	.level-right {
+		display: none;
+	}
+}
+

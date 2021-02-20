@@ -202,3 +202,185 @@
     <% end %>
   </div>
 </section>
+
+
+
+
+
+
+<div class="row">
+            <div class="col-sm-6"></div>
+            <div class="col-sm-6"><div class="level-right row justify-content-md-center ">
+              <div class="level-item views data  col-lg-2 float-end">
+                <%= link_to shop do%>
+                  <span class="icon"><i class="fa fa-eye"><%= shop.impressionist_count%></i></span>
+                  
+                <% end %>
+              </div>
+              <div class="level-item comments data col-md-auto">
+                <%= link_to shop do %>
+                  <span class="icon"><i class="fa fa-comment"></i></span>
+                  <%= shop.comments.count %>
+                <% end %>
+              </div>
+              <div class="level-item likes data  col-lg-2">
+                <% if user_signed_in? %>
+                  <% if current_user.liked? shop %>
+                    <%= link_to unlike_shop_path(shop), method: :put, class: "unlike_shop" do %>
+                        <span class="icon"><i class="fa fa-heart vote-count "><span class="vote_count"><%= shop.get_likes.size %> </span> </i></span> 
+                        
+                    <% end %>
+                  <% else %>
+                    <%= link_to like_shop_path(shop), method: :put, class: "like_shop" do %>
+                        <span class="icon"><i class="fa fa-heart vote-count "><span class="vote_count"><%= shop.get_likes.size %> </span> </i></span> 
+                        
+                    <% end %>
+                  <% end %>
+                <% else %>
+                  <%= link_to like_shop_path(shop), method: :put, class: "like_shop" do %>
+                    <span class="icon"><i class="fa fa-heart vote-count ">     </i></span> 
+                    
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+            </div>
+          </div>
+
+
+
+
+
+
+
+
+
+
+
+
+          <%= stylesheet_link_tag "styles" %>
+<div class="section">
+  <div class="container">
+    <div class="row ">
+      <div class="col-8" id="main">
+        <h1 class="title"><%= @shop.title %> </h1>
+        <span class="text-grey"></span>
+        <h6 class="user-thumb ">
+          by <%= gravatar_image_tag( @shop.user.email.gsub('spam', 'mdeering'), alt: @shop.user.name, class: "ms-3 totm", gravatar: { size: 20 }); %>  <%= @shop.user.name %> <span class="text-grey ms-3">  posted</span><span class="bt">
+          <%= verbose_date(@shop.created_at)  %>
+          </span>
+        </h6>
+        <div class="mobile float-end">
+          <div class="level shot-analytics float-end av">
+              <ul class="list-group list-group-horizontal">
+                <li class="list-group-item">
+                  <%= link_to @shop do%>
+                    <span class="icon"><i class="fa fa-eye"><%= @shop.impressionist_count%></i></span>
+                  <% end %>
+                </li>
+                <li class="list-group-item">
+                  <%= link_to @shop do %>
+                    <span class="icon"><i class="fa fa-comment"></i></span>
+                    <%= @shop.comments.count %>
+                  <% end %>
+                </li>
+                <li class="list-group-item">
+                  <% if user_signed_in? %>
+                    <% if current_user.liked? @shop %>
+                      <%= link_to unlike_shop_path(@shop), method: :put, class: "unlike_shop" do %>
+                          <span class="icon"><i class="fa fa-heart vote-count "><%= @shop.get_likes.size %></i></span> 
+                          
+                      <% end %>
+                    <% else %>
+                      <%= link_to like_shop_path(@shop), method: :put, class: "like_shop" do %>
+                          <span class="icon"><i class="fa fa-heart vote-count "><%= @shop.get_likes.size %></i></span> 
+                          
+                      <% end %>
+                    <% end %>
+                  <% else %>
+                    <%= link_to like_shop_path(@shop), method: :put, class: "like_shop" do %>
+                      <span class="icon"><i class="fa fa-heart vote-count "> <%= @shop.get_likes.size %></i>
+                      
+                    <% end %>
+                  <% end %>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <br><br><br>
+        <div class="grid">
+          <div class="shot-container  pt-5">
+            <div class="shot-full "><%= render 'carousel' %></div>
+            <br>
+            <h4 class="content container"><%= @shop.description %></h4>
+            <br>
+          </div>
+        </div>
+        <br>
+        <% if user_signed_in? && (current_user.id == @shop.user_id) %>
+          <%= link_to 'Edit', edit_shop_path(@shop), class: "btn btn-secondary" %>
+          <%= link_to shop_path, method: :delete, data: {confirm: "Are You Sure?"}, class: "btn btn-outline-danger  ms-3" do %>
+            <i class="fa fa-trash">  Delete</i><p></p>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="col-4" id="other">
+        <div class="row nav panel show-shot-analytics mt-5">
+          <div class="row">
+            <div class="col-12">
+              <div class="list-group " id="list-tab" role="tablist">
+                <a class="list-group-item list-group-item-action active" id="list-home-list" data-bs-toggle="list" href="#" role="tab" aria-controls="home"><span class="icon"><i class="fa fa-eye"></i></span> <%= pluralize(@shop.impressionist_count, 'View') %></a><hr>
+                <a class="list-group-item list-group-item-action " id="list-profile-list" data-bs-toggle="list" href="#" role="tab" aria-controls="profile"><span class="icon"><i class="fa fa-comment"></i></span>  <%= pluralize(@shop.comments.count, 'Comment') %> </a><hr>
+                <div class="ico me-5"> 
+                <% if user_signed_in? %>
+                  <% if current_user.liked? @shop %>
+                      <%= link_to unlike_shop_path(@shop), method: :put, class: "unlike_shop" do %>
+                          <span class="icon"><i class="fa fa-heart vote-count "> </i></span> 
+                      <% end %>
+                          <span class="vote-count "><%= pluralize(@shop.get_likes.size, 'Like') %> </span>
+                  <% else %>
+                      <%= link_to like_shop_path(@shop), method: :put, class: "like_shop" do %>
+                          <span class="icon"><i class="fa fa-heart vote-count "> </i></span> 
+                      <% end %>
+                          <span class="vote-count"><%= pluralize(@shop.get_likes.size, 'Like') %> </span>
+                  <% end %>
+              <% else %>
+                  <%= link_to like_shop_path(@shop), method: :put, class: "like_shop ms-5 btn ico" do %>
+                      <span class="icon"><i class="fa fa-heart vote-count "> </i></span> 
+                  <% end %>
+                      <span class="vote-count"><%= pluralize(@shop.get_likes.size, 'Like') %> </span>
+              <% end %>
+              </div><hr>
+                <%# <a class="list-group-item list-group-item-action" id="list-messages-list" data-bs-toggle="list" href="#" role="tab" aria-controls="messages"><span class="icon"><i class="fa fa-heart "></i></span> </a><hr> %>
+              </div>
+            </div>
+            <%# <div class="col-8">
+              <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">...</div>
+                <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">...</div>
+                <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">...</div>
+                <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">...</div>
+              </div>
+            </div> %>
+          </div>
+        </div>
+        
+      </div>
+      <section class="container comments mb-3"><br>
+        <h2><%= pluralize(@shop.comments.count, 'Comment') %> </h2><hr/>
+        <%= render @shop.comments %>
+        <br>
+        <% if user_signed_in? %>
+          <div class="comment-form">
+          <div class=""></div>
+            <h2 class="text-center ">Leave a reply</h2>
+            <div class=""><div class=""><%= render 'comments/form' %></div></div> 
+          </div>
+        <% else %>
+          <div class="content"><%= link_to 'Sign In', new_user_session_path, class: "btn btn-primary" %>  to leave a comment</div>
+        <% end %>
+      </section><br>
+    </div><br>
+  </div>
+</div>

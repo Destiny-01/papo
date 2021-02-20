@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>Bruma</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -18,7 +18,7 @@
   </head>
 
   <body>
-    <div style="background-color: #fffafa; font-family: Roboto;">
+    <div  class="body" >
       <div class="container ">
         <%= render 'store/nav'%>
        <% if notice %>

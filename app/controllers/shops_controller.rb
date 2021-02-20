@@ -45,6 +45,9 @@ class ShopsController < ApplicationController
   def update
     respond_to do |format|
       if @shop.update(shop_params)
+        if params[:@shop][:image].present?
+          params[:@shop][:image]
+        end
         format.html { redirect_to @shop, notice: 'Shop was successfully updated.' }
         format.json { render :show, status: :ok, location: @shop }
       else

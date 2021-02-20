@@ -52,6 +52,11 @@
     background-color: violet;
 }
 
+// .img-fluid {
+//     max-width: 100%;
+//     max-height: inherit;
+// }
+
 .tt {
     background-color: royalblue;
 }
@@ -85,12 +90,41 @@
     font-size: 24px;
 }
 
-.omg  {
-	padding-right: 480px;
+.mobile {
+    color: rgb(46, 46, 240);
+    position: absolute;
+    font-size: 14px;
+}
+
+@media screen and (min-width: 1060px) {
+    .omg  {
+        padding-right: 480px;
+    }
+	.mobile {
+		display: none;
+	}
+    .yy {
+        font-size: 24px;
+        margin-left: 36em;
+    }
 }
 
 .ico {
     font-size: 14px;
+}
+
+.av {
+    margin-right: 28px;
+    margin-bottom: 12px;
+}
+
+.icon {
+    color: rgb(46, 46, 240);
+}
+
+.crop {
+    max-width: 600px;
+    max-height: 700px;
 }
 
 .not {
@@ -98,17 +132,13 @@
     height: 480px;
 }
 .title {
-    font-family: monospace;
+    font-family: sans-serif;
 }
 
 .nn { 
     min-width: 240px;
 }
 
-.yy {
-    font-size: 24px;
-    margin-left: 36em;
-}
 
 .media-content {
     margin-right: 48px;

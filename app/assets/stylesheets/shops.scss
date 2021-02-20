@@ -25,6 +25,7 @@
 	}
 	@media only screen and (max-width: 800px) {
 		grid-template-columns: 1fr 1fr;
+		width: 100%;
 	}
 	@media only screen and (max-width: 400px) {
 		grid-template-columns: 1fr;
@@ -163,4 +164,11 @@
 	flex: 1;
 	display: flex;
 	justify-content: flex-end;
+}
+
+
+
+.img-fluid {
+	max-width: 100%;
+	height: auto;
 }

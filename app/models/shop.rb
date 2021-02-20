@@ -18,12 +18,12 @@ class Shop < ApplicationRecord
     end
 
     def full input
-        return self.image[input].variant(resize: "800x700!").processed
+        return self.image[input].variant(resize: "1000x700!").processed
     end
 
     private
 
-  def image_type
+  def image_type                             
     # return unless image.attached?
     if image.attached? == false
       errors.add(:image, "are missing!")
